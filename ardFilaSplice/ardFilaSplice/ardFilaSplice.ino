@@ -15,10 +15,13 @@
   TM1637Display display(CLK, DIO);
 */
 
+#include <Arduino.h>
 #include <TM1637TinyDisplay.h> // 
-#define CLK 8
-#define DIO 9
+const int CLK = 8;
+const int DIO = 9;
 TM1637TinyDisplay display(CLK, DIO);
+
+uint8_t data[] = { 0x00, 0x00, 0x00, 0x00 };
 
 /*******************************
   Pins
@@ -30,8 +33,8 @@ const int thermPin = A0; // pin connected to the thermistor
 /*******************************
   Temperatures and thermistor
 *******************************/
-float setPoint = 100;
-const float seriesResistor = 4700.0;
+float setPoint = 200;
+const float seriesResistor = 100000.0; //4700.0;
 
 int Vo; // this is the voltage at the thermistor analog input
 float R2; // calculated resistance of the thermistor
@@ -39,8 +42,11 @@ float R2; // calculated resistance of the thermistor
 const float thermistorNominal = 100000.0; // resistance at 25 degrees C
 const float nominalTemperature = 25.0; // temp. for nominal resistance (almost always 25 C)
 const float betaCoefficient = 3950.0; // the beta coefficient of the thermistor (usually 3000-4000)
-const int numSamples = 5; // how many samples to take and average, more takes longer but is more 'smooth'
+const int numSamples = 10; // how many samples to take and average, more takes longer but is more 'smooth'
 int samples[numSamples];
+
+const float tempOffset = 0;
+const float tempFactor = 0.92;
 
 /*******************************
   Plot
@@ -91,6 +97,9 @@ void setup() {
   //TCCR2B = TCCR2B & B11111000 | 0x03;    // set pin 3 and 11 PWM frequency to 980.39 Hz, this is the default for D5 and D6
   Time = millis();
 
+  display.clear();
+  display.setBrightness(BRIGHT_HIGH);
+
 }
 
 
@@ -108,9 +117,13 @@ void loop() {
   /*******************************
     Read temperature
   *******************************/
+  /*
   Vo = analogRead(thermPin); // this reads the analog value of analog input A0
   R2 = seriesResistor * (1023.0 / (float)Vo - 1.0); // seriesResistor is the 4.7 kOhm resistor
   actualTemp = (1.0 / (1.009249522e-03 + 2.378405444e-04 * log(R2) + 2.019202697e-07 * pow(log(R2), 3)) - 273.15);
+
+  delay(10);
+*/
 
 
   /*******************************
@@ -131,7 +144,7 @@ void loop() {
   average /= numSamples;
 
   if (plot) {
-    Serial.print("AverageAnalogReading:");
+    Serial.print("AverageAnalogReading->");
     Serial.print(average);
   }
 
@@ -146,8 +159,10 @@ void loop() {
   steinhart = 1.0 / steinhart;                 // Invert
   steinhart -= 273.15;                         // convert absolute
 
+  actualTemp = (steinhart + tempOffset) * tempFactor;
+
   if (plot) {
-    Serial.print("\tThermistorResistance;");
+    Serial.print("\tThermistorResistance->");
     Serial.print(average);
     Serial.print("\tAdafruitTemperature:");
     Serial.print(steinhart);
@@ -176,7 +191,7 @@ void loop() {
     PIDvalue = 255;
   }
 
-  analogWrite(pwmPin, 255 - PIDvalue); // write the PWM signal to the mosfet
+  analogWrite(pwmPin, PIDvalue); // write the PWM signal to the mosfet
   previousPIDerror = PIDerror; // store the previous error for next loop.
 
 
@@ -189,7 +204,7 @@ void loop() {
     Serial.print("\tActual:");
     Serial.print(actualTemp, 1);
     Serial.print("\tPWMvalue:");
-    Serial.println(255 - PIDvalue);
+    Serial.println(PIDvalue);
   } else {
     Serial.print("Setpoint: ");
     Serial.print(setPoint, 1);
@@ -198,7 +213,16 @@ void loop() {
     Serial.print(", \tPWM value: ");
     Serial.println(255 - PIDvalue);
   }
-  display.showNumber(actualTemp); // print actual temp to display
+
+  //data[0] = display.encodeDigit(0);
+  //data[0] = 0x00;
+  //data[1] = display.encodeDigit(1);
+  //data[2] = display.encodeDigit(2);
+  //data[3] = display.encodeDigit(3);
+  //display.setSegments(data);
+  //display.showNumber(1234); // print actual temp to display
+
+  display.showNumber(actualTemp, 0);
 
   delay(300);
 
