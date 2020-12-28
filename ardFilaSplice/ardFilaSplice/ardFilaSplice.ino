@@ -8,13 +8,6 @@
 /*******************************
   TM1637 4 x 7-segment display
 *******************************/
-/*
-  #include <TM1637Display.h> // https://github.com/avishorp/TM1637
-  #define CLK 8
-  #define DIO 9
-  TM1637Display display(CLK, DIO);
-*/
-
 #include <Arduino.h>
 #include <TM1637TinyDisplay.h> // 
 const int CLK = 8;
@@ -22,6 +15,7 @@ const int DIO = 9;
 TM1637TinyDisplay display(CLK, DIO);
 
 uint8_t data[] = { 0x00, 0x00, 0x00, 0x00 };
+
 
 /*******************************
   Pins
@@ -36,9 +30,6 @@ const int thermPin = A0; // pin connected to the thermistor
 float setPoint = 200;
 const float seriesResistor = 100000.0; //4700.0;
 
-int Vo; // this is the voltage at the thermistor analog input
-float R2; // calculated resistance of the thermistor
-
 const float thermistorNominal = 100000.0; // resistance at 25 degrees C
 const float nominalTemperature = 25.0; // temp. for nominal resistance (almost always 25 C)
 const float betaCoefficient = 3950.0; // the beta coefficient of the thermistor (usually 3000-4000)
@@ -46,7 +37,12 @@ const int numSamples = 10; // how many samples to take and average, more takes l
 int samples[numSamples];
 
 const float tempOffset = 0;
-const float tempFactor = 0.92;
+const float tempFactor = 0.90;
+
+float steinhart;
+uint8_t i;
+float average;
+
 
 /*******************************
   Plot
@@ -66,9 +62,10 @@ float prevTime;
 int PIDvalue = 0;
 
 //PID constants
-const int kp = 9.1;
-const int ki = 0.3;
-const int kd = 1.8;
+//
+const int kp = 7.5; //23.12; //9.1;
+const int ki = 0.99; //1.72; //0.3;
+const int kd = 0.1; //77.65; //1.8;
 
 int PIDp = 0;
 int PIDi = 0;
@@ -106,31 +103,63 @@ void setup() {
 void loop() {
 
   /*******************************
-    Set MOSFET
-  *******************************/
-  //digitalWrite(pwmPin, HIGH); // code below switches the heater on and off every second
-  //delay(1000);
-  //digitalWrite(pwmPin, LOW);
-  //delay(1000);
-
-
-  /*******************************
-    Read temperature
-  *******************************/
-  /*
-  Vo = analogRead(thermPin); // this reads the analog value of analog input A0
-  R2 = seriesResistor * (1023.0 / (float)Vo - 1.0); // seriesResistor is the 4.7 kOhm resistor
-  actualTemp = (1.0 / (1.009249522e-03 + 2.378405444e-04 * log(R2) + 2.019202697e-07 * pow(log(R2), 3)) - 273.15);
-
-  delay(10);
-*/
-
-
-  /*******************************
     Adafruit read temperature
   *******************************/
-  uint8_t i;
-  float average;
+
+  steinhart = readTemp();
+
+  actualTemp = (steinhart + tempOffset) * tempFactor;
+
+
+  /*******************************
+    PID control
+  *******************************/
+  PIDvalue = doPID();
+
+  analogWrite(pwmPin, PIDvalue); // write the PWM signal to the mosfet
+  previousPIDerror = PIDerror; // store the previous error for next loop.
+
+
+  /*******************************
+    Visual output
+  *******************************/
+  if (plot) {
+    Serial.print("ThermistorResistance->");
+    Serial.print(average);
+
+    /*
+    Serial.print("\tPIDp:");
+    Serial.print(PIDp);
+    Serial.print("\tPIDi:");
+    Serial.print(PIDi);
+    Serial.print("\tPIDd:");
+    Serial.print(PIDd);
+    */
+    
+    Serial.print("\tAdafruitTemperature:");
+    Serial.print(steinhart);
+    Serial.print("\tSetpoint:");
+    Serial.print(setPoint, 1);
+    Serial.print("\tActual:");
+    Serial.print(actualTemp, 1);
+    Serial.print("\tPWMvalue:");
+    Serial.println(PIDvalue);
+  } else {
+    Serial.print("Setpoint: ");
+    Serial.print(setPoint, 1);
+    Serial.print(", \tActual: ");
+    Serial.print(actualTemp, 1);
+    Serial.print(", \tPWM value: ");
+    Serial.println(255 - PIDvalue);
+  }
+
+  display.showNumber(actualTemp, 0);
+
+  delay(300);
+
+}
+
+float readTemp() {
 
   for (i = 0; i < numSamples; i++) { // take N samples in a row, with a slight delay
     samples[i] = analogRead(thermPin);
@@ -143,15 +172,9 @@ void loop() {
   }
   average /= numSamples;
 
-  if (plot) {
-    Serial.print("AverageAnalogReading->");
-    Serial.print(average);
-  }
-
   average = (1023 / average)  - 1;     // (1023/ADC - 1)
   average = seriesResistor / average;  // 100K / (1023/ADC - 1)
 
-  float steinhart;
   steinhart = average / thermistorNominal;     // (R/Ro)
   steinhart = log(steinhart);                  // ln(R/Ro)
   steinhart /= betaCoefficient;                   // 1/B * ln(R/Ro)
@@ -159,19 +182,12 @@ void loop() {
   steinhart = 1.0 / steinhart;                 // Invert
   steinhart -= 273.15;                         // convert absolute
 
-  actualTemp = (steinhart + tempOffset) * tempFactor;
+  return steinhart;
 
-  if (plot) {
-    Serial.print("\tThermistorResistance->");
-    Serial.print(average);
-    Serial.print("\tAdafruitTemperature:");
-    Serial.print(steinhart);
-  }
+}
 
-
-  /*******************************
-    PID control
-  *******************************/
+int doPID() {
+  
   PIDerror = setPoint - actualTemp; // calculate the error between the setpoint and the real value
   PIDp = kp * PIDerror; // calculate the P value
   if (-3 < PIDerror < 3) { // calculate the I value in a range on +-3
@@ -191,39 +207,6 @@ void loop() {
     PIDvalue = 255;
   }
 
-  analogWrite(pwmPin, PIDvalue); // write the PWM signal to the mosfet
-  previousPIDerror = PIDerror; // store the previous error for next loop.
-
-
-  /*******************************
-    Visual output
-  *******************************/
-  if (plot) {
-    Serial.print("\tSetpoint:");
-    Serial.print(setPoint, 1);
-    Serial.print("\tActual:");
-    Serial.print(actualTemp, 1);
-    Serial.print("\tPWMvalue:");
-    Serial.println(PIDvalue);
-  } else {
-    Serial.print("Setpoint: ");
-    Serial.print(setPoint, 1);
-    Serial.print(", \tActual: ");
-    Serial.print(actualTemp, 1);
-    Serial.print(", \tPWM value: ");
-    Serial.println(255 - PIDvalue);
-  }
-
-  //data[0] = display.encodeDigit(0);
-  //data[0] = 0x00;
-  //data[1] = display.encodeDigit(1);
-  //data[2] = display.encodeDigit(2);
-  //data[3] = display.encodeDigit(3);
-  //display.setSegments(data);
-  //display.showNumber(1234); // print actual temp to display
-
-  display.showNumber(actualTemp, 0);
-
-  delay(300);
-
+  return PIDvalue;
+  
 }

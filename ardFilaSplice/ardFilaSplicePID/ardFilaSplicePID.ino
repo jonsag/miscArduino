@@ -61,7 +61,8 @@ const boolean plot = true; // if true, serial output is only values that can be 
 
 double actualTemp = 0.0; // the measured temperature
 double PWMvalue;
-double Kp = 2, Ki = 5, Kd = 1; // initial tuning parameters
+//double Kp = 2, Ki = 5, Kd = 1; // initial tuning parameters
+double Kp = 23.12, Ki = 1.72, Kd = 77.65;
 
 PID myPID(&actualTemp, &PWMvalue, &setPoint, Kp, Ki, Kd, DIRECT);
 
