@@ -27,7 +27,7 @@ const int thermPin = A0; // pin connected to the thermistor
 /*******************************
   Temperatures and thermistor
 *******************************/
-float setPoint = 200;
+float setPoint = 210;
 const float seriesResistor = 100000.0; //4700.0;
 
 const float thermistorNominal = 100000.0; // resistance at 25 degrees C
@@ -63,9 +63,9 @@ int PIDvalue = 0;
 
 //PID constants
 //
-const int kp = 7.5; //23.12; //9.1;
-const int ki = 0.99; //1.72; //0.3;
-const int kd = 0.1; //77.65; //1.8;
+const int kp = 7.5; //15; //7.5; //23.12; //9.1;
+const int ki = 0.99; //0.3 //0.99; //1.72; //0.3;
+const int kd = 0.1; //0 //0.1; //77.65; //1.8;
 
 int PIDp = 0;
 int PIDi = 0;

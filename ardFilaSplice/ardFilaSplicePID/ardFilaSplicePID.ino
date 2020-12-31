@@ -31,7 +31,7 @@ const int thermPin = A0; // pin connected to the thermistor
 *******************************/
 double setPoint = 200; // this is our goal temperature
 
-const float seriesResistor = 100000.0; // value of the resistor in serie with the thermistor
+const float seriesResistor = 4490; //100000.0; // value of the resistor in serie with the thermistor
 
 const float thermistorNominal = 100000.0; // resistance at 25 degrees C
 const float nominalTemperature = 25.0; // temp. for nominal resistance (almost always 25 C)
@@ -62,9 +62,32 @@ const boolean plot = true; // if true, serial output is only values that can be 
 double actualTemp = 0.0; // the measured temperature
 double PWMvalue;
 //double Kp = 2, Ki = 5, Kd = 1; // initial tuning parameters
-double Kp = 23.12, Ki = 1.72, Kd = 77.65;
+double aggKp = 3; //7.5;
+double aggKi = 0.3; //0.99;
+double aggKd = 0; //0.1;
 
-PID myPID(&actualTemp, &PWMvalue, &setPoint, Kp, Ki, Kd, DIRECT);
+PID myPID(&actualTemp, &PWMvalue, &setPoint, aggKp, aggKi, aggKd, DIRECT);
+
+const boolean useAdaptiveTuning = false;
+
+double consKp = 1; //7.5;
+double consKi = 0.3; //0.99;
+double consKd = 0; //0.1;
+
+double tempGap;
+
+/*******************************
+  Rotary encoder
+*******************************/
+#include <SimpleRotary.h>
+
+SimpleRotary rotary(3, 4, 5); // CLK, DT , SW
+
+byte rotEncTurn;
+byte rotEncPush;
+
+boolean setTemp = false;
+
 
 void setup() {
 
@@ -91,6 +114,23 @@ void setup() {
 
   myPID.SetMode(AUTOMATIC); //turn the PID on
 
+  if (useAdaptiveTuning) {
+    myPID.SetTunings(consKp, consKi, consKd);
+  }
+
+  /*******************************
+    Rotary encoder setup
+  *******************************/
+  // Set the trigger to be either a HIGH or LOW pin (Default: HIGH)
+  // Note this sets all three pins to use the same state.
+  //rotary.setTrigger(HIGH);
+
+  // Set the debounce delay in ms  (Default: 2)
+  //rotary.setDebounceDelay(2);
+
+  // Set the error correction delay in ms  (Default: 200)
+  //rotary.setErrorDelay(10);
+
   /*******************************
     LED display
   *******************************/
@@ -105,33 +145,95 @@ void loop() {
   /*******************************
     Read temperature
   *******************************/
-  steinhart = readTemp();
-  actualTemp = (steinhart + tempOffset) * tempFactor;
-
+  if (!setTemp) {
+    steinhart = readTemp();
+    actualTemp = (steinhart + tempOffset) * tempFactor;
+  }
 
   /*******************************
     PID control
   *******************************/
-  myPID.Compute();
-  analogWrite(pwmPin, PWMvalue);
+  if (!setTemp) {
+    if (useAdaptiveTuning) {
+    tempGap = abs(setPoint - actualTemp); // distance away from setpoint
 
+    if (tempGap < 10) { //we're close to setpoint, use conservative tuning parameters
+      myPID.SetTunings(consKp, consKi, consKd);
+    } else { //we're far from setpoint, use aggressive tuning parameters
+      myPID.SetTunings(aggKp, aggKi, aggKd);
+    }
+    }
+
+    myPID.Compute();
+    analogWrite(pwmPin, PWMvalue);
+  } else {
+    analogWrite(pwmPin, 0);
+  }
+
+  /*******************************
+    Rotary encoder
+  *******************************/
+  rotEncPush = rotary.push();
+  rotEncTurn = rotary.rotate();
+
+  if (rotEncPush != 0 || rotEncTurn != 0) {  // rotary encoder was manipulated
+    if ( rotEncPush == 1 ) { // button pushed
+      Serial.println();
+      Serial.println("---------- Button pushed");
+      if (setTemp) { // toggle setTemp
+        setTemp = false;
+        Serial.println("Leaving setting mode");
+        Serial.println();
+      } else {
+        setTemp = true;
+        Serial.println("In setting mode");
+        Serial.print("Setpoint: ");
+        Serial.println(setPoint);
+        Serial.println();
+      }
+    }
+
+    if (setTemp) {
+
+      if ( rotEncTurn == 1 ) {
+        Serial.println("--- Increasing setpoint..");
+        setPoint ++;
+        Serial.print("Setpoint: ");
+        Serial.println(setPoint);
+        Serial.println();
+      }
+
+      if ( rotEncTurn == 2 ) {
+        Serial.println("--- Decreasing setpoint..");
+        setPoint --;
+        Serial.print("Setpoint: ");
+        Serial.println(setPoint);
+        Serial.println();
+      }
+    }
+  }
 
   /*******************************
     UI
   *******************************/
-  if (plot) {
-    Serial.print("\Setpoint:");
-    Serial.print(setPoint, 1);
-    Serial.print("\tAdafruitTemperature:");
-    Serial.print(steinhart);
-    Serial.print("\tActual:");
-    Serial.print(actualTemp, 1);
-    Serial.print("\tPWMvalue:");
-    Serial.println(PWMvalue);
+  if (!setTemp) {
+    if (plot) {
+      Serial.print("\Setpoint:");
+      Serial.print(setPoint, 1);
+      Serial.print("\tAdafruitTemperature:");
+      Serial.print(steinhart);
+      Serial.print("\tActual:");
+      Serial.print(actualTemp, 1);
+      Serial.print("\tPWMvalue:");
+      Serial.println(PWMvalue);
+    }
   }
 
-  display.showNumber(actualTemp, 0); // print temp to 7-segment display
-
+  if (!setTemp) {
+    display.showNumber(actualTemp, 0); // print temp to 7-segment display
+  } else {
+    display.showNumber((int)setPoint, true); // print temp to 7-segment display
+  }
   delay(300);
 
 }
