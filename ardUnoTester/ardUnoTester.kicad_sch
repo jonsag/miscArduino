@@ -4,6 +4,12 @@
 
   (paper "A4")
 
+  (title_block
+    (title "ardUnoTester")
+    (date "2022-09-18")
+    (rev "0.1")
+  )
+
   (lib_symbols
     (symbol "MCU_Module:Arduino_UNO_R3" (in_bom yes) (on_board yes)
       (property "Reference" "A" (id 0) (at -10.16 23.495 0)
