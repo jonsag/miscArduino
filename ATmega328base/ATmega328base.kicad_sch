@@ -1,0 +1,99 @@
+(kicad_sch (version 20211123) (generator eeschema)
+
+  (uuid c8b63c3f-d4e8-4a50-89a3-f1c16cae0a54)
+
+  (paper "A4")
+
+  (lib_symbols
+  )
+
+
+  (sheet (at 143.51 166.37) (size 12.7 3.81) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid) (color 0 0 0 0))
+    (fill (color 0 0 0 0.0000))
+    (uuid 8c14ef75-6b7d-4cb1-8711-d8693b8f64e9)
+    (property "Sheet name" "ATmega328" (id 0) (at 143.51 165.6584 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheet file" "ATmega328.kicad_sch" (id 1) (at 143.51 170.7646 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+  )
+
+  (sheet_instances
+    (path "/" (page "1"))
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9" (page "2"))
+  )
+
+  (symbol_instances
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/887bddd1-78a5-43d5-9251-ad400d0d3cd6"
+      (reference "#PWR0101") (unit 1) (value "+5V") (footprint "")
+    )
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/ab18152f-42a4-49f4-9cc6-548605622609"
+      (reference "#PWR0102") (unit 1) (value "+5V") (footprint "")
+    )
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/505d001e-da14-49e2-b56a-6c70df56f11c"
+      (reference "#PWR0103") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/56d98f57-a3ce-441f-a746-8f02e09b4656"
+      (reference "#PWR0104") (unit 1) (value "VCC") (footprint "")
+    )
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/d984694a-262c-4346-ab41-64362f537016"
+      (reference "#PWR0105") (unit 1) (value "+5V") (footprint "")
+    )
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/c1d8c2ec-36c1-4196-9e61-55f0e8852aa1"
+      (reference "#PWR0106") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/af1513de-37c6-4c0b-975e-06887f5628a2"
+      (reference "#PWR0107") (unit 1) (value "+5V") (footprint "")
+    )
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/438c7c8a-e824-4e1e-864a-6517b18eb3fc"
+      (reference "#PWR0108") (unit 1) (value "+5V") (footprint "")
+    )
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/e7c79bfc-0d09-4f96-9560-fb3189c69095"
+      (reference "#PWR0109") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/f3772a08-8ed7-4e71-ab3c-32f7f8ca3c28"
+      (reference "#PWR0110") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/1d778ba4-e56e-4a87-b009-e40143252b76"
+      (reference "#PWR0111") (unit 1) (value "VCC") (footprint "")
+    )
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/696df578-6bdc-443a-a217-a62cc8b4250c"
+      (reference "#PWR0112") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/37b7e408-f5b5-446b-b31e-ecf237cd42ab"
+      (reference "C1") (unit 1) (value "10u") (footprint "My_Misc:CP_Radial_D5.0mm_P2.00mm_larger")
+    )
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/3dbbd874-4356-499e-a429-61d7753aff31"
+      (reference "C2") (unit 1) (value "22p") (footprint "My_Misc:C_Disc_D3.0mm_W1.6mm_P2.50mm_larg")
+    )
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/46d43805-ca83-431b-a91c-3ae86772dc62"
+      (reference "C3") (unit 1) (value "22p") (footprint "My_Misc:C_Disc_D3.0mm_W1.6mm_P2.50mm_larg")
+    )
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/7543fffa-c3f2-49c2-bd40-b4d8c2069b4d"
+      (reference "C4") (unit 1) (value "10u") (footprint "My_Misc:CP_Radial_D5.0mm_P2.00mm_larger")
+    )
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/4b424130-8bce-42a7-8946-cad50b0153be"
+      (reference "C5") (unit 1) (value "100n") (footprint "My_Misc:C_Disc_D3.0mm_W1.6mm_P2.50mm_larg")
+    )
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/28ccfd0f-19c3-4140-9676-6599e7e73442"
+      (reference "J1") (unit 1) (value "FTDI") (footprint "My_Headers:6-pin FTDI Programmer PinSocket large")
+    )
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/84896aa3-d212-448c-8ed2-6ff6fce517a6"
+      (reference "J2") (unit 1) (value "Power in") (footprint "My_Misc:BarrelJack_Horizontal")
+    )
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/30368655-28ce-4b01-92b5-3d567c864af4"
+      (reference "R1") (unit 1) (value "10k") (footprint "My_Misc:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_larger_pads")
+    )
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/21e35700-c335-4b40-acef-67629c75e00c"
+      (reference "U1") (unit 1) (value "AMS1117-5.0") (footprint "Package_TO_SOT_SMD:SOT-223-3_TabPin2")
+    )
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/0a6b5f15-1107-424a-bd44-f50b433033f8"
+      (reference "U2") (unit 1) (value "ATmega328P-PU") (footprint "My_Misc:DIP-28_W7.62mm_LongPads w socket")
+    )
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/f8e190d8-bd18-4f99-aa7d-c0c5541ed2ac"
+      (reference "Y1") (unit 1) (value "16MHz") (footprint "My_Misc:Crystal_HC49-4H_Vertical_large")
+    )
+  )
+)
