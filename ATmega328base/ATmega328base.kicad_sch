@@ -41,26 +41,32 @@
     (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/d984694a-262c-4346-ab41-64362f537016"
       (reference "#PWR05") (unit 1) (value "+5V") (footprint "")
     )
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/9ac48121-8350-45b4-b9b6-e14b5b254d8d"
+      (reference "#PWR06") (unit 1) (value "GND") (footprint "")
+    )
     (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/887bddd1-78a5-43d5-9251-ad400d0d3cd6"
-      (reference "#PWR06") (unit 1) (value "+5V") (footprint "")
+      (reference "#PWR07") (unit 1) (value "+5V") (footprint "")
     )
     (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/f3772a08-8ed7-4e71-ab3c-32f7f8ca3c28"
-      (reference "#PWR07") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/e7c79bfc-0d09-4f96-9560-fb3189c69095"
       (reference "#PWR08") (unit 1) (value "GND") (footprint "")
     )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/ab18152f-42a4-49f4-9cc6-548605622609"
-      (reference "#PWR09") (unit 1) (value "+5V") (footprint "")
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/8b821867-cd65-4a4d-878b-0653658dbb84"
+      (reference "#PWR09") (unit 1) (value "GND") (footprint "")
     )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/c1d8c2ec-36c1-4196-9e61-55f0e8852aa1"
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/e7c79bfc-0d09-4f96-9560-fb3189c69095"
       (reference "#PWR010") (unit 1) (value "GND") (footprint "")
     )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/438c7c8a-e824-4e1e-864a-6517b18eb3fc"
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/ab18152f-42a4-49f4-9cc6-548605622609"
       (reference "#PWR011") (unit 1) (value "+5V") (footprint "")
     )
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/c1d8c2ec-36c1-4196-9e61-55f0e8852aa1"
+      (reference "#PWR012") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/438c7c8a-e824-4e1e-864a-6517b18eb3fc"
+      (reference "#PWR013") (unit 1) (value "+5V") (footprint "")
+    )
     (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/af1513de-37c6-4c0b-975e-06887f5628a2"
-      (reference "#PWR012") (unit 1) (value "+5V") (footprint "")
+      (reference "#PWR014") (unit 1) (value "+5V") (footprint "")
     )
     (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/37b7e408-f5b5-446b-b31e-ecf237cd42ab"
       (reference "C1") (unit 1) (value "10u") (footprint "My_Misc:CP_Radial_D5.0mm_P2.00mm_larger")
@@ -68,14 +74,20 @@
     (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/7543fffa-c3f2-49c2-bd40-b4d8c2069b4d"
       (reference "C2") (unit 1) (value "10u") (footprint "My_Misc:CP_Radial_D5.0mm_P2.00mm_larger")
     )
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/b27d6658-c017-489e-b5ca-f6f947783544"
+      (reference "C3") (unit 1) (value "100n") (footprint "My_Misc:C_Disc_D4.3mm_W1.9mm_P5.00mm_large")
+    )
+    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/12b24124-dc9d-40af-89af-11d733272e70"
+      (reference "C4") (unit 1) (value "100n") (footprint "My_Misc:C_Disc_D4.3mm_W1.9mm_P5.00mm_large")
+    )
     (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/3dbbd874-4356-499e-a429-61d7753aff31"
-      (reference "C3") (unit 1) (value "22p") (footprint "My_Misc:C_Disc_D3.0mm_W1.6mm_P2.50mm_larg")
+      (reference "C5") (unit 1) (value "22p") (footprint "My_Misc:C_Disc_D3.0mm_W1.6mm_P2.50mm_larg")
     )
     (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/46d43805-ca83-431b-a91c-3ae86772dc62"
-      (reference "C4") (unit 1) (value "22p") (footprint "My_Misc:C_Disc_D3.0mm_W1.6mm_P2.50mm_larg")
+      (reference "C6") (unit 1) (value "22p") (footprint "My_Misc:C_Disc_D3.0mm_W1.6mm_P2.50mm_larg")
     )
     (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/4b424130-8bce-42a7-8946-cad50b0153be"
-      (reference "C5") (unit 1) (value "100n") (footprint "My_Misc:C_Disc_D4.3mm_W1.9mm_P5.00mm_large")
+      (reference "C7") (unit 1) (value "100n") (footprint "My_Misc:C_Disc_D4.3mm_W1.9mm_P5.00mm_large")
     )
     (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/84896aa3-d212-448c-8ed2-6ff6fce517a6"
       (reference "J1") (unit 1) (value "Power in") (footprint "My_Misc:BarrelJack_Horizontal")
