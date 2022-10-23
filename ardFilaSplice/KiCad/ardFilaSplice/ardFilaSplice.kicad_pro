@@ -388,7 +388,7 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "specctra_dsn": "",
+      "specctra_dsn": "ardFilaSplice.dsn",
       "step": "",
       "vrml": ""
     },
