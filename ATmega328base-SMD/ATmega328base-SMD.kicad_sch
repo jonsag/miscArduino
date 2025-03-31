@@ -1,111 +1,51 @@
-(kicad_sch (version 20211123) (generator eeschema)
-
-  (uuid c8b63c3f-d4e8-4a50-89a3-f1c16cae0a54)
-
-  (paper "A4")
-
-  (lib_symbols
-  )
-
-
-  (sheet (at 143.51 166.37) (size 12.7 3.81) (fields_autoplaced)
-    (stroke (width 0.1524) (type solid) (color 0 0 0 0))
-    (fill (color 0 0 0 0.0000))
-    (uuid 8c14ef75-6b7d-4cb1-8711-d8693b8f64e9)
-    (property "Sheet name" "ATmega328" (id 0) (at 143.51 165.6584 0)
-      (effects (font (size 1.27 1.27)) (justify left bottom))
-    )
-    (property "Sheet file" "ATmega328.kicad_sch" (id 1) (at 143.51 170.7646 0)
-      (effects (font (size 1.27 1.27)) (justify left top))
-    )
-  )
-
-  (sheet_instances
-    (path "/" (page "1"))
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9" (page "2"))
-  )
-
-  (symbol_instances
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/177b7bb1-7ab8-4375-8f03-d35936c51419"
-      (reference "#PWR0101") (unit 1) (value "+5V") (footprint "")
-    )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/ab18152f-42a4-49f4-9cc6-548605622609"
-      (reference "#PWR0102") (unit 1) (value "+5V") (footprint "")
-    )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/29015f37-ac96-4201-b020-7ae9c6274a5a"
-      (reference "#PWR0103") (unit 1) (value "VCC") (footprint "")
-    )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/0a97dbaa-c3d4-4928-9dae-8a8fbd256ab4"
-      (reference "#PWR0104") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/73c87f30-679c-4bce-a29d-b65a3c4a41e0"
-      (reference "#PWR0105") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/c1d8c2ec-36c1-4196-9e61-55f0e8852aa1"
-      (reference "#PWR0106") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/af1513de-37c6-4c0b-975e-06887f5628a2"
-      (reference "#PWR0107") (unit 1) (value "+5V") (footprint "")
-    )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/438c7c8a-e824-4e1e-864a-6517b18eb3fc"
-      (reference "#PWR0108") (unit 1) (value "+5V") (footprint "")
-    )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/e7c79bfc-0d09-4f96-9560-fb3189c69095"
-      (reference "#PWR0109") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/32e5eff2-974b-4cc1-b086-b6b700d69ff6"
-      (reference "#PWR0110") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/1d778ba4-e56e-4a87-b009-e40143252b76"
-      (reference "#PWR0111") (unit 1) (value "VCC") (footprint "")
-    )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/696df578-6bdc-443a-a217-a62cc8b4250c"
-      (reference "#PWR0112") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/d0528b5e-12a1-4dc0-8c2d-23ad6adfc7aa"
-      (reference "#PWR0113") (unit 1) (value "+5V") (footprint "")
-    )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/7f506910-d80f-4c59-b0a5-42111d2b0ae5"
-      (reference "#PWR0114") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/32487e03-c506-469f-ab87-6f153591fdc8"
-      (reference "#PWR0115") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/43812c9d-3a44-47a5-9ce2-6256b966aff8"
-      (reference "#PWR0116") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/c32bd5c4-dea2-4283-853b-5ebbde36a216"
-      (reference "C1") (unit 1) (value "VE-100M1ETR-0405") (footprint "JLC2KiCad_Footprints:CAP-SMD_BD4.0-L4.3-W4.3-RD")
-    )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/6188cbe5-bc53-487b-9851-90ad13baecdf"
-      (reference "C2") (unit 1) (value "VE-100M1ETR-0405") (footprint "JLC2KiCad_Footprints:CAP-SMD_BD4.0-L4.3-W4.3-RD")
-    )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/af8f08ee-17d2-4d24-85c6-f567f955adcb"
-      (reference "C3") (unit 1) (value "1206CG220J102NT") (footprint "JLC2KiCad_Footprints:C1206")
-    )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/7fc29be3-32b1-4bfb-859c-54b73d6688ef"
-      (reference "C4") (unit 1) (value "1206CG220J102NT") (footprint "JLC2KiCad_Footprints:C1206")
-    )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/37585159-a2f0-47a3-a582-e10c1be4d7ed"
-      (reference "C5") (unit 1) (value "CL31B104KBCNNNC") (footprint "JLC2KiCad_Footprints:C1206")
-    )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/28ccfd0f-19c3-4140-9676-6599e7e73442"
-      (reference "J1") (unit 1) (value "FTDI") (footprint "My_Headers:6-pin FTDI Programmer PinSocket large")
-    )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/84896aa3-d212-448c-8ed2-6ff6fce517a6"
-      (reference "J2") (unit 1) (value "Power in") (footprint "My_Misc:BarrelJack_Horizontal")
-    )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/54643548-9ebc-4285-bda5-d67331bb7c46"
-      (reference "R1") (unit 1) (value "1206W4F1002T5E") (footprint "JLC2KiCad_Footprints:R1206")
-    )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/a6da7fd5-c283-495c-a379-cf314d9d1a1f"
-      (reference "U1") (unit 1) (value "AMS1117-5_0") (footprint "JLC2KiCad_Footprints:SOT-223_L6.5-W3.5-P2.30-LS7.0-BR")
-    )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/5c4a38c3-c806-4034-8e5e-fe62633806da"
-      (reference "U2") (unit 1) (value "ATMEGA328P-AU") (footprint "JLC2KiCad_Footprints:TQFP-32_L7.0-W7.0-P0.80-LS9.0-BL")
-    )
-    (path "/8c14ef75-6b7d-4cb1-8711-d8693b8f64e9/e54e83f2-089a-486d-9454-43fca195dd3e"
-      (reference "X1") (unit 1) (value "X322516MLB4SI") (footprint "JLC2KiCad_Footprints:OSC-SMD_4P-L3.2-W2.5-BL")
-    )
-  )
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "c8b63c3f-d4e8-4a50-89a3-f1c16cae0a54")
+	(paper "A4")
+	(lib_symbols)
+	(sheet
+		(at 143.51 166.37)
+		(size 12.7 3.81)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "8c14ef75-6b7d-4cb1-8711-d8693b8f64e9")
+		(property "Sheetname" "ATmega328"
+			(at 143.51 165.6584 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "ATmega328.kicad_sch"
+			(at 143.51 170.7646 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "ATmega328base-SMD"
+				(path "/c8b63c3f-d4e8-4a50-89a3-f1c16cae0a54"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
 )
