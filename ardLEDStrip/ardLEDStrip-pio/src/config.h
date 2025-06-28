@@ -30,8 +30,6 @@ String email = "jonsagebrand@gmail.com";
  ***********/
 #define serialBaudRate 9600
 
-
-
 /***********
  * Button
  ***********/
@@ -39,7 +37,6 @@ String email = "jonsagebrand@gmail.com";
 #define LongPressInterval 500
 
 int status = 0;
-
 
 /***********
  * NeoPixel Strip
@@ -57,21 +54,23 @@ int status = 0;
 #define LED_COUNT 44
 #define BRIGHTNESS 50 // Set BRIGHTNESS to about 1/5 (max = 255)
 
-//#define WAIT 50
+// #define WAIT 50
 
-const int WAIT = 50;
+const int WAIT = 10;
+
+uint32_t color = (0, 0, 0);
 
 // Declare our NeoPixel strip object:
 Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
-//Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRBW + NEO_KHZ800);
-// Argument 1 = Number of pixels in NeoPixel strip
-// Argument 2 = Arduino pin number (most are valid)
-// Argument 3 = Pixel type flags, add together as needed:
-//   NEO_KHZ800  800 KHz bitstream (most NeoPixel products w/WS2812 LEDs)
-//   NEO_KHZ400  400 KHz (classic 'v1' (not v2) FLORA pixels, WS2811 drivers)
-//   NEO_GRB     Pixels are wired for GRB bitstream (most NeoPixel products)
-//   NEO_RGB     Pixels are wired for RGB bitstream (v1 FLORA pixels, not v2)
-//   NEO_RGBW    Pixels are wired for RGBW bitstream (NeoPixel RGBW products)
+// Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRBW + NEO_KHZ800);
+//  Argument 1 = Number of pixels in NeoPixel strip
+//  Argument 2 = Arduino pin number (most are valid)
+//  Argument 3 = Pixel type flags, add together as needed:
+//    NEO_KHZ800  800 KHz bitstream (most NeoPixel products w/WS2812 LEDs)
+//    NEO_KHZ400  400 KHz (classic 'v1' (not v2) FLORA pixels, WS2811 drivers)
+//    NEO_GRB     Pixels are wired for GRB bitstream (most NeoPixel products)
+//    NEO_RGB     Pixels are wired for RGB bitstream (v1 FLORA pixels, not v2)
+//    NEO_RGBW    Pixels are wired for RGBW bitstream (NeoPixel RGBW products)
 
 unsigned long pixelPrevious = 0;   // Previous Pixel Millis
 unsigned long patternPrevious = 0; // Previous Pattern Millis

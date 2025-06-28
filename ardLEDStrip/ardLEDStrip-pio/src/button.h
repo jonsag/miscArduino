@@ -23,8 +23,24 @@ void action()
         TrueWhite();
     }
     break;
+    case 2:
+    {
+        red();
     }
-    infoMessln();
+    break;
+    case 3:
+    {
+        blue();
+    }
+    break;
+    case 4:
+    {
+        green();
+    }
+    break;
+    }
+    
+infoMessln();
 }
 
 // Handler function for a single click:
@@ -59,9 +75,21 @@ void HandleDoubleClick()
 {
     infoMessln("Double click!");
 
+    if (status == 0)
+    {
+        status = 1;
+    }
+
     status++;
+
+    if (status > 4)
+    {
+        status = 2;
+    }
 
     infoMess("Status: ");
     infoMessln(status);
     infoMessln();
+
+    action();
 }

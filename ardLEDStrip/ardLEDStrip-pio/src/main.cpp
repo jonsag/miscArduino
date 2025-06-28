@@ -18,9 +18,11 @@
 #endif
 
 #include <config.h>
-// #include <demo.h>
 #include <leds.h>
 #include <button.h>
+
+#include <test.h>
+//#include <demo.h>
 
 // setup() function -- runs once at startup --------------------------------
 void setup()
@@ -81,7 +83,7 @@ void setup()
 // loop() function -- runs repeatedly as long as board is on ---------------
 void loop()
 {
-  // RunDemo();
+  //RunDemo();
 
   /*
   colorWipe(strip.Color(255,   0,   0)     , 50); // Red
@@ -89,6 +91,8 @@ void loop()
   colorWipe(strip.Color(  0,   0, 255)     , 50); // Blue
   colorWipe(strip.Color(  255   ,   255,   255), 50); // True white (not RGB white)
   */
+
+  //test();
  
   btn.tick();
 }

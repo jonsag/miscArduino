@@ -5,7 +5,7 @@ void TurnOffAll()
     strip.show();
 }
 
-/*void colorWipe(uint32_t color, int WAIT)
+void colorWipe(uint32_t color, int WAIT)
 {
     for (int i = 0; i < strip.numPixels(); i++)
     {                                  // For each pixel in strip...
@@ -13,32 +13,60 @@ void TurnOffAll()
         strip.show();                  //  Update strip to match
         delay(WAIT);                   //  Pause for a moment
     }
-}*/
+}
 
 void red()
 {
-    //colorWipe(strip.Color(255, 0, 0), 50); // Red
+    infoMessln("Red");
+
+    colorWipe(strip.Color(255, 0, 0), 50); // Red
+
+    /*color = (127, 0, 0);
+    for (int j = 0; j < LED_COUNT; j++)
+    {
+        strip.setPixelColor(j, color);
+        strip.show();
+    }*/
 }
 
 void blue()
 {
-    //colorWipe(strip.Color(0, 255, 0), 50);
+    infoMessln("Blue");
+
+    colorWipe(strip.Color(0, 0, 255), 50);
+
+    /*color = (0, 255, 0);
+    for (int j = 0; j < LED_COUNT; j++)
+    {
+        strip.setPixelColor(j, color);
+        strip.show();
+    }*/
 }
 
 void green()
 {
-    //colorWipe(strip.Color(0, 0, 255), 50);
+    infoMessln("Green");
+
+    colorWipe(strip.Color(0, 255, 0), 50);
+
+    /*color = (0, 0, 127);
+    for (int j = 0; j < LED_COUNT; j++)
+    {
+        strip.setPixelColor(j, color);
+        strip.show();
+    }*/
 }
 
 void TrueWhite()
 {
     infoMessln("White");
-    // colorWipe(strip.Color(0, 0, 0, 255), 50);
+
+    colorWipe(strip.Color(255, 255, 255), 50);
+
+    /*color = (127, 127, 127);
     for (int j = 0; j < LED_COUNT; j++)
-    { // Ramp up from 0 to 255
-        //infoMessln(j);
-        // strip.fill(strip.Color(255, 255, 255), 50);
-        strip.setPixelColor(j, (127, 127, 127));
+    {
+        strip.setPixelColor(j, color);
         strip.show();
-    }
+    }*/
 }

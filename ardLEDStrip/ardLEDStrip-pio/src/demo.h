@@ -25,7 +25,7 @@ uint32_t Wheel(byte WheelPos)
 // (as a single 'packed' 32-bit value, which you can get by calling
 // strip.Color(red, green, blue) as shown in the loop() function above),
 // and a delay time (in milliseconds) between pixels.
-void colorWipe(uint32_t color, int wait)
+/*void colorWipe(uint32_t color, int wait)
 {
     static uint16_t current_pixel = 0;
     pixelInterval = wait;                        //  Update delay time
@@ -36,7 +36,7 @@ void colorWipe(uint32_t color, int wait)
         current_pixel = 0;
         patternComplete = true;
     }
-}
+}*/
 
 // Theater-marquee-style chasing lights. Pass in a color (32-bit value,
 // a la strip.Color(r,g,b) as mentioned above), and a delay time (in ms)
@@ -118,7 +118,35 @@ void RunDemo()
         patternCurrent++; //  Advance to next pattern
         if (patternCurrent >= 7)
             patternCurrent = 0;
-    }
+
+        /*switch (patternCurrent)
+        {
+        case 7:
+            infoMessln("Demo theater chase rainbow...");
+            break;
+        case 6:
+            infoMessln("Demo rainbow...");
+            break;
+        case 5:
+            infoMessln("Demo theater chase blue...");
+            break;
+        case 4:
+            infoMessln("Demo theater chase red...");
+            break;
+        case 3:
+            infoMessln("Demo theater chase white...");
+            break;>
+        case 2:
+            infoMessln("Demo color wipe blue...");
+            break;
+        case 1:
+            infoMessln("Demo color wipe green...");
+            break;
+        default:
+            infoMessln("Demo color wipe red...");
+            break;
+        }
+    }*/
 
     if (currentMillis - pixelPrevious >= pixelInterval)
     {                                  //  Check for expired time
@@ -126,27 +154,35 @@ void RunDemo()
         switch (patternCurrent)
         {
         case 7:
+            // infoMessln("Demo theater chase rainbow...");
             theaterChaseRainbow(50); // Rainbow-enhanced theaterChase variant
             break;
         case 6:
+            // infoMessln("Demo rainbow...");
             rainbow(10); // Flowing rainbow cycle along the whole strip
             break;
         case 5:
+            // infoMessln("Demo theater chase blue...");
             theaterChase(strip.Color(0, 0, 127), 50); // Blue
             break;
         case 4:
+            // infoMessln("Demo theater chase red...");
             theaterChase(strip.Color(127, 0, 0), 50); // Red
             break;
         case 3:
+            // infoMessln("Demo theater chase white...");
             theaterChase(strip.Color(127, 127, 127), 50); // White
             break;
         case 2:
+            // infoMessln("Demo color wipe blue...");
             colorWipe(strip.Color(0, 0, 255), 50); // Blue
             break;
         case 1:
+            // infoMessln("Demo color wipe green...");
             colorWipe(strip.Color(0, 255, 0), 50); // Green
             break;
         default:
+            // infoMessln("Demo color wipe red...");
             colorWipe(strip.Color(255, 0, 0), 50); // Red
             break;
         }
