@@ -19,10 +19,12 @@
 
 #include <config.h>
 #include <leds.h>
+
+//#include <demo.h>
+
 #include <button.h>
 
 #include <test.h>
-//#include <demo.h>
 
 // setup() function -- runs once at startup --------------------------------
 void setup()

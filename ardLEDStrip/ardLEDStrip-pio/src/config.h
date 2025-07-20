@@ -51,12 +51,12 @@ int status = 0;
 #endif
 
 // How many NeoPixels are attached to the Arduino?
-#define LED_COUNT 44
+#define LED_COUNT 17
 #define BRIGHTNESS 50 // Set BRIGHTNESS to about 1/5 (max = 255)
 
 // #define WAIT 50
 
-const int WAIT = 10;
+const 6int WAIT = 10;
 
 uint32_t color = (0, 0, 0);
 

@@ -20,7 +20,7 @@ void action()
     break;
     case 1:
     {
-        TrueWhite();
+        white();
     }
     break;
     case 2:
@@ -38,8 +38,13 @@ void action()
         green();
     }
     break;
+    case 5:
+    {
+        //RunDemo();
     }
-    
+    break;
+    }
+
 infoMessln();
 }
 
@@ -64,11 +69,11 @@ void HandleLongPress()
 {
     infoMessln("Long press!");
 
-    status = 0;
+    status = 5;
 
     infoMess("Status: ");
     infoMessln(status);
-    infoMessln();
+     action();
 }
 
 void HandleDoubleClick()

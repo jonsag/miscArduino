@@ -57,7 +57,7 @@ void green()
     }*/
 }
 
-void TrueWhite()
+void white()
 {
     infoMessln("White");
 
